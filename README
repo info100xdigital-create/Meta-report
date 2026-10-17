@@ -1,0 +1,386 @@
+# Meta Ads Reporting Automation
+
+Automated Meta Ads campaign reporting system using:
+
+* Meta Marketing API
+* Google Sheets
+* WhatsApp API
+* Python Automation
+
+This project fetches yesterday’s Meta Ads campaign performance data and automatically:
+
+* Stores reports in Google Sheets
+* Sends campaign summaries via WhatsApp
+* Tracks campaign-level performance
+* Supports Leads, CTWA, Awareness, Video & Engagement campaigns
+
+---
+
+# Features
+
+## Campaign Reporting
+
+Automatically fetches:
+
+* Campaign Name
+* Results
+* Reach
+* Impressions
+* Cost Per Result
+* Amount Spent
+
+---
+
+## Supports Multiple Campaign Types
+
+### Lead Campaigns
+
+* Lead Ads
+* Instant Forms
+* Website Leads
+
+### WhatsApp / CTWA Campaigns
+
+* Messaging Campaigns
+* Conversation Started
+* Engagement Campaigns
+
+### Awareness Campaigns
+
+* Video Views
+* ThruPlays
+* Engagement
+
+### Traffic Campaigns
+
+* Link Clicks
+* Landing Page Views
+
+---
+
+# Tech Stack
+
+* Python
+* Meta Marketing API
+* Google Sheets API
+* WhatsApp API
+* gspread
+* Facebook Business SDK
+
+---
+
+# Project Structure
+
+```bash
+Meta_Ads_Report_Automation/
+│
+├── main.py
+├── credentials.json
+├── requirements.txt
+├── README.md
+└── myenv/
+```
+
+---
+
+# Installation
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/meta-ads-report-automation.git
+```
+
+```bash
+cd meta-ads-report-automation
+```
+
+---
+
+## 2. Create Virtual Environment
+
+```bash
+python -m venv myenv
+```
+
+Activate environment:
+
+### Windows
+
+```bash
+myenv\Scripts\activate
+```
+
+### Mac/Linux
+
+```bash
+source myenv/bin/activate
+```
+
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Required Packages
+
+Create a `requirements.txt` file:
+
+```txt
+facebook-business
+gspread
+oauth2client
+pandas
+requests
+```
+
+---
+
+# Google Sheets Setup
+
+## 1. Create Google Cloud Project
+
+Enable:
+
+* Google Sheets API
+* Google Drive API
+
+---
+
+## 2. Create Service Account
+
+Download:
+
+```bash
+credentials.json
+```
+
+Place inside project folder.
+
+---
+
+## 3. Share Google Sheet
+
+Share your Google Sheet with:
+
+```bash
+your-service-account@project-id.iam.gserviceaccount.com
+```
+
+Give:
+
+* Editor Access
+
+---
+
+# Google Sheet Structure
+
+Main worksheet name:
+
+```bash
+Master_Data
+```
+
+Columns:
+
+| Date | Client Name | Campaign Name | Results | Reach | Impressions | Cost Per Result | Amount Spent |
+| ---- | ----------- | ------------- | ------- | ----- | ----------- | --------------- | ------------ |
+
+---
+
+# Meta API Setup
+
+Get:
+
+* Access Token
+* App ID
+* App Secret
+
+Update inside:
+
+```python
+ACCESS_TOKEN = "YOUR_ACCESS_TOKEN"
+APP_ID = "YOUR_APP_ID"
+APP_SECRET = "YOUR_APP_SECRET"
+```
+
+---
+
+# WhatsApp API Setup
+
+Update:
+
+```python
+API_URL = "YOUR_API_URL"
+API_TOKEN = "YOUR_API_TOKEN"
+TEMPLATE_NAME = "scheduled_meta_ads_report"
+PHONE_NUMBER = "YOUR_PHONE_NUMBER"
+```
+
+---
+
+# WhatsApp Template
+
+Template Name:
+
+```bash
+scheduled_meta_ads_report
+```
+
+Template Content:
+
+```txt
+Your scheduled Meta Ads report for {{1}} is ready.
+
+Account: {{2}}
+
+Summary:
+{{3}}
+
+The100x.digital
+```
+
+---
+
+# How It Works
+
+## Step 1
+
+Fetch yesterday’s campaign data from Meta Ads API.
+
+## Step 2
+
+Filters campaigns with spend > 0.
+
+## Step 3
+
+Detects campaign objective.
+
+## Step 4
+
+Automatically selects correct result metric:
+
+* Leads
+* Messaging Conversations
+* Video Views
+* ThruPlays
+* Engagement
+* Link Clicks
+
+## Step 5
+
+Stores data in Google Sheets.
+
+## Step 6
+
+Sends WhatsApp summary report.
+
+---
+
+# Running the Project
+
+```bash
+python main.py
+```
+
+---
+
+# Example Console Output
+
+```bash
+📅 Fetching campaign data for: 2026-05-11
+
+🔄 Fetching VLCC Chrompet...
+📊 Campaign Count: 5
+✅ Done for VLCC Chrompet
+```
+
+---
+
+# GitHub Push Commands
+
+## Initialize Git
+
+```bash
+git init
+```
+
+---
+
+## Add Files
+
+```bash
+git add .
+```
+
+---
+
+## Commit
+
+```bash
+git commit -m "Initial Commit"
+```
+
+---
+
+## Connect GitHub Repo
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+```
+
+---
+
+## Push to GitHub
+
+```bash
+git branch -M main
+```
+
+```bash
+git push -u origin main
+```
+
+---
+
+# Important Notes
+
+## Never Upload
+
+Do NOT upload:
+
+* credentials.json
+* access tokens
+* API secrets
+* .env files
+
+---
+
+# Recommended .gitignore
+
+```gitignore
+myenv/
+credentials.json
+.env
+__pycache__/
+```
+
+---
+
+# Future Improvements
+
+* Dashboard Integration
+* Auto Daily Scheduler
+* Email Reports
+* Multi-user Reporting
+* Advanced KPI Reports
+* CSV Export
+* Meta Ads Breakdown Reports
+
+---
+
